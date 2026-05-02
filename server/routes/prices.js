@@ -74,12 +74,13 @@ router.get('/operators', async (req, res) => {
 // Manual trigger — GET /api/prices/scrape
 router.get('/scrape', async (req, res) => {
   try {
+    if (process.env.RENDER === 'true') {
+      return res.json({ message: 'Scraping not available on cloud — run locally' });
+    }
     const scrapeRedbus = require('../scrapers/redbus');
     const travelDate = new Date();
     travelDate.setDate(travelDate.getDate() + 7);
-    
     res.json({ message: 'Scraping started...' });
-    
     await scrapeRedbus(travelDate);
   } catch (err) {
     console.error(err);
