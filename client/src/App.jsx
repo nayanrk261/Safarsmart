@@ -14,11 +14,11 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [lowestRes, operatorsRes, historyRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/prices/lowest'),
-          axios.get('http://localhost:5000/api/prices/operators'),
-          axios.get('http://localhost:5000/api/prices/history'),
-        ])
+       const [lowestRes, operatorsRes, historyRes] = await Promise.all([
+  axios.get(`${import.meta.env.VITE_API_URL}/api/prices/lowest`),
+  axios.get(`${import.meta.env.VITE_API_URL}/api/prices/operators`),
+  axios.get(`${import.meta.env.VITE_API_URL}/api/prices/history`),
+])
         setLowest(lowestRes.data)
         setOperators(operatorsRes.data)
         setHistory(historyRes.data)

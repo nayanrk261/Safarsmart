@@ -18,7 +18,7 @@ function AlertForm() {
 
     setLoading(true)
     try {
-      await axios.post('http://localhost:5000/api/alerts', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/alerts`, {
         whatsapp: form.telegram,
         travelDate: form.travelDate,
         maxPrice: parseInt(form.maxPrice)
